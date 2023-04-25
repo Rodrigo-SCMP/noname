@@ -1,0 +1,35 @@
+window.addEventListener('load', function() {
+  // Cria uma nova bolha a cada 3 segundos
+  setInterval(function() {
+    criarBolha();
+  }, 3000);
+});
+
+function criarBolha() {
+  // Cria uma nova bolha
+  var bolha = document.createElement('div');
+  bolha.className = 'bolha';
+
+  // Define a posição inicial da bolha
+  bolha.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
+  bolha.style.bottom = '-20px';
+
+  // Adiciona a bolha na página
+  document.body.appendChild(bolha);
+
+  // Anima a bolha
+  animarBolha(bolha);
+}
+
+function animarBolha(bolha) {
+  // Move a bolha para cima
+  var posicaoAtual = -20;
+  var animacao = setInterval(function() {
+    posicaoAtual += 1;
+    bolha.style.bottom = posicaoAtual + 'px';
+    if (posicaoAtual >= window.innerHeight) {
+      clearInterval(animacao);
+      bolha.remove();
+    }
+  }, 10);
+}
